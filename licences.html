@@ -16,13 +16,37 @@
   <main id="main-content">
     <section class="page-hero"><div class="container page-hero-inner"><span class="eyebrow">Licences &amp; compliance</span><h1>Evidence first. Sensitive details protected.</h1><p>This page is ready for verified licence and approval records. Documents will be published only after company review, with personal and security-sensitive information redacted.</p></div></section>
 
-    <section class="section"><div class="container">
+    <section class="section" id="document-register"><div class="container">
       <div class="notice spacer-bottom"><strong>Current publication status:</strong> no regulator-issued licence copy has been published on this website yet. This prevents the company from accidentally presenting a memorandum object as an active licence.</div>
-      <div class="section-heading"><div><span class="eyebrow">Document register</span><h2>A clear home for verified company records.</h2></div><p>Each approved document will receive a concise summary card. Depending on sensitivity, visitors will either see a redacted copy or a route to request it from management.</p></div>
-      <div class="document-grid">
-        <article class="document-card reveal"><span class="doc-icon"><i class="fa-solid fa-file-shield"></i></span><h3>Mining rights &amp; licences</h3><p>Licence type, mineral, issuing authority, status, issue and expiry dates, and a safely shortened reference.</p><div class="doc-meta">Awaiting verified company documents</div></article>
-        <article class="document-card reveal"><span class="doc-icon"><i class="fa-solid fa-leaf"></i></span><h3>Environmental approvals</h3><p>Environmental certificates, approvals, or project-specific records published only where they apply to a confirmed project.</p><div class="doc-meta">Awaiting verified company documents</div></article>
-        <article class="document-card reveal"><span class="doc-icon"><i class="fa-solid fa-building-shield"></i></span><h3>Corporate &amp; operating permits</h3><p>Business registration and sector-specific approvals presented separately from mineral rights to avoid confusion.</p><div class="doc-meta">Awaiting verified company documents</div></article>
+      <div class="section-heading"><div><span class="eyebrow">Live document register</span><h2>Verified records, organised for serious review.</h2></div><p>The register is connected to a structured company data file. Approved records can be added without redesigning this page, while filters help visitors find the right document quickly.</p></div>
+
+      <div class="register-shell reveal">
+        <div class="register-overview" aria-label="Document register status">
+          <div><span>Public records</span><strong data-document-count>0</strong></div>
+          <div><span>Register status</span><strong>Ready</strong></div>
+          <div><span>Last reviewed</span><strong data-register-reviewed>—</strong></div>
+        </div>
+
+        <div class="register-toolbar">
+          <label class="register-search" for="documentSearch"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><span class="sr-only">Search documents</span><input id="documentSearch" type="search" placeholder="Search title, mineral, authority or region" autocomplete="off"></label>
+          <div class="register-filters" aria-label="Filter documents by category">
+            <button type="button" class="filter-chip active" data-document-filter="all" aria-pressed="true">All</button>
+            <button type="button" class="filter-chip" data-document-filter="mineral-right">Mineral rights</button>
+            <button type="button" class="filter-chip" data-document-filter="environmental">Environmental</button>
+            <button type="button" class="filter-chip" data-document-filter="corporate">Corporate</button>
+          </div>
+        </div>
+
+        <div class="document-register" id="documentRegister" aria-live="polite" aria-busy="true">
+          <div class="register-loading"><i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i><span>Loading the verified register…</span></div>
+        </div>
+      </div>
+      <noscript><div class="notice spacer-top">JavaScript is required to search the document register. Contact management to request the current record list.</div></noscript>
+
+      <div class="register-categories">
+        <article><i class="fa-solid fa-file-shield" aria-hidden="true"></i><div><strong>Mining rights &amp; licences</strong><p>Mineral, authority, holder, scope, status, and relevant dates.</p></div></article>
+        <article><i class="fa-solid fa-leaf" aria-hidden="true"></i><div><strong>Environmental approvals</strong><p>Project-specific records published only where they clearly apply.</p></div></article>
+        <article><i class="fa-solid fa-building-shield" aria-hidden="true"></i><div><strong>Corporate &amp; operating permits</strong><p>Kept separate from mineral rights to avoid misleading claims.</p></div></article>
       </div>
     </div></section>
 

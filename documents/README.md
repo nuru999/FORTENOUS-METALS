@@ -41,3 +41,35 @@ Each public licence card should contain:
 - Link to a redacted copy or a `Request document` button
 
 Never describe an application, memorandum object, expired record, or third-party document as an active Fortenous Metals licence.
+
+## Publishing a verified record
+
+The public register reads from `data/documents.json` and its structure is defined by `data/documents.schema.json`. Keep `documents` empty until a record passes the collection, ownership, status, redaction, and management-approval checks above.
+
+Add one object per approved record using this structure:
+
+```json
+{
+  "id": "unique-record-id",
+  "published": true,
+  "category": "mineral-right",
+  "categoryLabel": "Mineral right",
+  "title": "Exact document title",
+  "status": "active",
+  "statusLabel": "Active",
+  "issuingAuthority": "Exact authority name",
+  "holder": "Exact legal holder",
+  "issueDate": "YYYY-MM-DD",
+  "expiryDate": "YYYY-MM-DD",
+  "mineral": "Mineral where applicable",
+  "region": "High-level location where safe",
+  "scope": "Accurate public scope",
+  "summary": "Short verified summary",
+  "publicReference": "Safely masked reference",
+  "publicFile": "documents/public/redacted-file.pdf"
+}
+```
+
+Allowed categories are `mineral-right`, `environmental`, and `corporate`. Supported statuses are `active`, `expired`, `pending`, and `unknown`. Omit `publicFile` when a record should be available by request only.
+
+Place only management-approved, redacted copies inside `documents/public/`. Never place original records, unredacted scans, the TRA payment slip, or private due-diligence documents in the public repository.

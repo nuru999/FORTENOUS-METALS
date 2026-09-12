@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fortenous Metals public document register",
+  "type": "object",
+  "required": ["registerVersion", "lastReviewed", "publicationStatus", "documents"],
+  "properties": {
+    "registerVersion": { "type": "integer", "minimum": 1 },
+    "lastReviewed": { "type": "string", "format": "date" },
+    "publicationStatus": {
+      "type": "string",
+      "enum": ["awaiting_verified_documents", "records_published", "under_review"]
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "published", "category", "categoryLabel", "title", "status", "issuingAuthority", "holder", "summary"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "published": { "const": true },
+          "category": { "type": "string", "enum": ["mineral-right", "environmental", "corporate"] },
+          "categoryLabel": { "type": "string", "minLength": 1 },
+          "title": { "type": "string", "minLength": 1 },
+          "status": { "type": "string", "enum": ["active", "expired", "pending", "unknown"] },
+          "statusLabel": { "type": "string" },
+          "issuingAuthority": { "type": "string", "minLength": 1 },
+          "holder": { "type": "string", "minLength": 1 },
+          "issueDate": { "type": "string", "format": "date" },
+          "expiryDate": { "type": "string", "format": "date" },
+          "mineral": { "type": "string" },
+          "region": { "type": "string" },
+          "scope": { "type": "string" },
+          "summary": { "type": "string", "minLength": 1 },
+          "publicReference": { "type": "string" },
+          "publicFile": { "type": "string", "pattern": "^documents/public/[A-Za-z0-9._/-]+$" }
+        }
+      }
+    }
+  }
+}
