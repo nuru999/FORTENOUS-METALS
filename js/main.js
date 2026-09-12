@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuButton = document.getElementById("mobileMenuBtn");
   const navLinks = document.getElementById("navLinks");
   const navbar = document.querySelector(".navbar");
+  const progressBar = document.querySelector(".scroll-progress span");
 
   const closeMenu = () => {
     if (!menuButton || !navLinks) return;
@@ -24,14 +25,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     navLinks.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeMenu();
+    });
+    document.addEventListener("click", (event) => {
+      if (!navLinks.classList.contains("active")) return;
+      if (!navLinks.contains(event.target) && !menuButton.contains(event.target)) closeMenu();
+    });
     window.addEventListener("resize", () => {
       if (window.innerWidth > 980) closeMenu();
     });
   }
 
-  const updateNavbar = () => navbar?.classList.toggle("scrolled", window.scrollY > 16);
-  updateNavbar();
-  window.addEventListener("scroll", updateNavbar, { passive: true });
+  const updateScrollUI = () => {
+    navbar?.classList.toggle("scrolled", window.scrollY > 16);
+    if (!progressBar) return;
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollable > 0 ? Math.min(100, (window.scrollY / scrollable) * 100) : 0;
+    progressBar.style.width = `${progress}%`;
+  };
+  updateScrollUI();
+  window.addEventListener("scroll", updateScrollUI, { passive: true });
 
   document.querySelectorAll("[data-year]").forEach((element) => {
     element.textContent = String(new Date().getFullYear());
@@ -47,16 +61,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     }, { threshold: 0.12 });
-    revealItems.forEach((item) => observer.observe(item));
+    revealItems.forEach((item, index) => {
+      item.style.transitionDelay = `${Math.min(index % 3, 2) * 70}ms`;
+      observer.observe(item);
+    });
   } else {
     revealItems.forEach((item) => item.classList.add("active"));
   }
 
   const subjectFromUrl = new URLSearchParams(window.location.search).get("subject");
-  if (subjectFromUrl === "due-diligence") {
-    const subjectSelect = document.getElementById("subject");
-    if (subjectSelect) subjectSelect.value = "Due-diligence document request";
-  }
+  const subjectSelect = document.getElementById("subject");
+  const subjectMap = {
+    "due-diligence": "Due-diligence document request",
+    "investor-brief": "Investor brief request",
+    project: "Mineral or project introduction",
+    technical: "Technical partnership"
+  };
+  if (subjectSelect && subjectMap[subjectFromUrl]) subjectSelect.value = subjectMap[subjectFromUrl];
 
   const contactForm = document.getElementById("contactForm");
   const formMessage = document.getElementById("formMessage");

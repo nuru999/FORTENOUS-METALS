@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nuru999.github.io/FORTENOUS-METALS/sitemap.xml

@@ -10,7 +10,7 @@ Investor-facing corporate website for **Fortenous Metals Tanzania Company Limite
 
 ## Purpose
 
-The website presents the company’s legal foundation, strategic focus, leadership, licence-publication policy, and partnership contact route. It deliberately separates:
+The website presents the company’s legal foundation, investor thesis, leadership, licence-publication policy, and structured contact route. It deliberately separates:
 
 - authorised objects in the Memorandum of Association;
 - current strategic focus;
@@ -28,6 +28,9 @@ This distinction protects the company’s credibility and gives potential partne
 | `services.html` | Mineral value-chain focus and partnership opportunities |
 | `licences.html` | Licence register structure, redaction policy, and document-request route |
 | `contact.html` | Direct business contacts and a privacy-friendly email enquiry builder |
+| `404.html` | Branded recovery page for broken or retired links |
+
+The site also includes structured organisation data, social sharing metadata, a favicon, `robots.txt`, and an XML sitemap.
 
 ## Source discipline
 
